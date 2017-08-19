@@ -1,0 +1,13 @@
+---
+owasp_dependency_check_mirror_version: "1.1.0"
+owasp_dependency_check_mirror_manage_user: true
+owasp_dependency_check_mirror_group: owasp
+owasp_dependency_check_mirror_user: owasp
+owasp_dependency_check_mirror_home: /var/lib/owasp
+owasp_dependency_check_mirror_dir: "/opt/owasp_nist_mirror"
+owasp_dependency_check_mirror_cache: "/var/cache/nist_data_mirror"
+owasp_dependency_check_mirror_cron_template: "cron.conf.j2"
+# owasp_dependency_check_mirror_repository_url: maven mirror
+# Java options:
+owasp_dependency_check_mirror_jvm_options: ~
+# use "-Dhttps.proxyHost=<blah> -Dhttps.proxyPort=<blah>" for a proxy

@@ -1,0 +1,16 @@
+-   repo: git://github.com/pre-commit/pre-commit-hooks
+    sha: v0.9.5
+    hooks:
+    -   id: trailing-whitespace
+        files: \.(js|json|rb|md|py|sh|txt|yaml|yml)$
+    -   id: check-yaml
+    -   id: check-case-conflict
+    -   id: check-json
+    -   id: end-of-file-fixer
+-   repo: https://github.com/willthames/ansible-lint.git
+    sha: v3.4.16
+    hooks:
+    -   id: ansible-lint
+        files: \.(yaml|yml)$
+        args:
+        - --exclude=.travis.yml

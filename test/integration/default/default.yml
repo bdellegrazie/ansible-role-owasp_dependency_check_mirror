@@ -1,0 +1,14 @@
+---
+- hosts: all
+  roles:
+    - bdellegrazie.ansible-role-serverspec_test_dependencies
+    - geerlingguy.java
+    - ansible-role-owasp-dependency-check-mirror
+    - geerlingguy.nginx
+  tasks:
+    - name: Trigger OWASP Mirror
+      become: true
+      become_user: "{{ owasp_dependency_check_mirror_user }}"
+      command: /usr/local/bin/owasp_nist_mirror.sh
+      tags:
+        - skip_ansible_lint

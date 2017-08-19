@@ -1,0 +1,4 @@
+#!/bin/bash
+[ "${FLOCKER}" != "$0" ] && exec env FLOCKER="$0" flock -en "$0" "$0" "$@" || :
+umask 0022
+java {{ owasp_dependency_check_mirror_jvm_options }} -jar {{ owasp_dependency_check_mirror_dir }}/nist-data-mirror.jar {{ owasp_dependency_check_mirror_cache }}

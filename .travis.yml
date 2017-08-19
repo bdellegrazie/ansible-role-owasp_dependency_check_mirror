@@ -1,0 +1,44 @@
+---
+dist: trusty
+sudo: required
+
+language: python
+python:
+  - "2.7"
+
+env:
+  - ANSIBLE_VERSION=2.2.1.0
+  - ANSIBLE_VERSION=2.2.2.0
+  - ANSIBLE_VERSION=2.2.3.0
+
+cache:
+  directories:
+    - $HOME/.cache/pip
+
+before_cache:
+  - rm -f $HOME/.cache/pip/log/debug.log
+
+services:
+  - docker
+
+before_install:
+  - sudo apt-get update
+  - sudo apt-get -y -o Dpkg::Options::="--force-confnew" install docker-ce
+  - pip install pre-commit
+
+install:
+  - pre-commit install
+  - bundle install --without=development --binstubs=vendor/bin --path=vendor/bundle
+
+script:
+  - pre-commit run --all-files
+
+jobs:
+  include:
+    - stage: test
+      script:
+        - pip install ansible==${ANSIBLE_VERSION}
+        - vendor/bin/kitchen test centos-7
+
+notifications:
+  webhooks: https://galaxy.ansible.com/api/v1/notifications/

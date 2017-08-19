@@ -1,0 +1,9 @@
+---
+nginx_remove_default_vhost: true
+nginx_vhosts:
+  - listen: 80
+    server_name: "_"
+    root: "/var/cache/nist_data_mirror"
+    state: present
+    extra_parameters: |
+      autoindex on;
