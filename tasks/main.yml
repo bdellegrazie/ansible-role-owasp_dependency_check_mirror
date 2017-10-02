@@ -74,7 +74,7 @@
 - name: Cron job
   cron:
     name: "OWASP NIST Mirror"
-    cron_file: owasp_nist_mirror.conf
+    cron_file: owasp_nist_mirror
     user: "{{ owasp_dependency_check_mirror_user }}"
     special_time: daily
     job: "/usr/local/bin/owasp_nist_mirror.sh"

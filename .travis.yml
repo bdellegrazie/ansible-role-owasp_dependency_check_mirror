@@ -1,19 +1,18 @@
 ---
 dist: trusty
 sudo: required
-
-language: python
-python:
-  - "2.7"
-
 env:
-  - ANSIBLE_VERSION=2.2.1.0
-  - ANSIBLE_VERSION=2.2.2.0
-  - ANSIBLE_VERSION=2.2.3.0
+  matrix:
+    - distro: centos7
+    - distro: ubuntu1604
 
+language: ruby
+bundler_args: --without=development --binstubs=vendor/bin
 cache:
+  bundler: true
   directories:
     - $HOME/.cache/pip
+    - $HOME/.inspec/cache
 
 before_cache:
   - rm -f $HOME/.cache/pip/log/debug.log
@@ -24,21 +23,34 @@ services:
 before_install:
   - sudo apt-get update
   - sudo apt-get -y -o Dpkg::Options::="--force-confnew" install docker-ce
-  - pip install pre-commit
-
-install:
-  - pre-commit install
-  - bundle install --without=development --binstubs=vendor/bin --path=vendor/bundle
 
 script:
-  - pre-commit run --all-files
+  # Configure test script so we can run extra tests after playbook is run.
+  - export container_id=$(date +%s)
+  - export cleanup=false
+  - export test_idempotence=false
+
+  # Download test shim.
+  - wget -O ${PWD}/tests/test.sh https://gist.githubusercontent.com/geerlingguy/73ef1e5ee45d8694570f334be385e181/raw/
+  - chmod +x ${PWD}/tests/test.sh
+
+  # Run tests.
+  - ${PWD}/tests/test.sh
+  - vendor/bin/inspec exec tests/profile -t docker://${container_id} --color --reporter=cli
+
+  # Clean up
+  - docker rm -f ${container_id}
+
+stages:
+  - lint
+  - test
 
 jobs:
   include:
-    - stage: test
-      script:
-        - pip install ansible==${ANSIBLE_VERSION}
-        - vendor/bin/kitchen test centos-7
+    - stage: lint
+      before_install: pip install --user pre-commit
+      install: pre-commit install
+      script: pre-commit run --all-files
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/

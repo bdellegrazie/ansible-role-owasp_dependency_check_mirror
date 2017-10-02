@@ -1,5 +1,5 @@
 ---
-owasp_dependency_check_mirror_version: "1.1.0"
+owasp_dependency_check_mirror_version: "1.2.0"
 owasp_dependency_check_mirror_manage_user: true
 owasp_dependency_check_mirror_group: owasp
 owasp_dependency_check_mirror_user: owasp
