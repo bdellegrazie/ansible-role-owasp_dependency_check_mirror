@@ -58,7 +58,6 @@
     path: "{{ owasp_dependency_check_mirror_dir }}/nist-data-mirror.jar"
     src: "{{ owasp_dependency_check_mirror_dir }}/nist-data-mirror-{{ owasp_dependency_check_mirror_version }}.jar"
     owner: root
-    mode: "ugo=rwx"
     group: root
     force: true
     state: link
