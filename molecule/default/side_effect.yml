@@ -1,0 +1,10 @@
+---
+- name: Side Effect
+  hosts: all
+  tasks:
+    - name: Trigger OWASP Mirror
+      become: true
+      become_user: "owasp"
+      command: /usr/local/bin/owasp_nist_mirror.sh
+      tags:
+        - skip_ansible_lint

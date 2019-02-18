@@ -1,5 +1,6 @@
 ---
 - name: Create OWASP Nist Mirror Dir
+  become: true
   file:
     path: "{{ owasp_dependency_check_mirror_dir }}"
     owner: root
@@ -8,22 +9,25 @@
     state: directory
 
 - block:
-  - name: "OWASP Group"
-    group:
-      name: "{{ owasp_dependency_check_mirror_group }}"
-      system: true
+    - name: "OWASP Group"
+      become: true
+      group:
+        name: "{{ owasp_dependency_check_mirror_group }}"
+        system: true
 
-  - name: "OWASP User"
-    user:
-      createhome: true
-      group: "{{ owasp_dependency_check_mirror_group }}"
-      home: "{{ owasp_dependency_check_mirror_home }}"
-      name: "{{ owasp_dependency_check_mirror_user }}"
-      shell: "/bin/bash"
-      system: true
+    - name: "OWASP User"
+      become: true
+      user:
+        createhome: true
+        group: "{{ owasp_dependency_check_mirror_group }}"
+        home: "{{ owasp_dependency_check_mirror_home }}"
+        name: "{{ owasp_dependency_check_mirror_user }}"
+        shell: "/bin/bash"
+        system: true
   when: owasp_dependency_check_mirror_manage_user
 
 - name: Create OWASP Nist Mirror Cache Dir
+  become: true
   file:
     path: "{{ owasp_dependency_check_mirror_cache }}"
     owner: "{{ owasp_dependency_check_mirror_user }}"
@@ -32,11 +36,13 @@
     state: directory
 
 - name: Package for maven_artifact
+  become: true
   package:
     name: python-lxml
     state: present
 
 - name: Retrieve Mirror Tool
+  become: true
   maven_artifact:
     artifact_id: nist-data-mirror
     group_id: us.springett
@@ -46,6 +52,7 @@
     state: present
 
 - name: Tool Permissions
+  become: true
   file:
     path: "{{ owasp_dependency_check_mirror_dir }}/nist-data-mirror-{{ owasp_dependency_check_mirror_version }}.jar"
     owner: root
@@ -54,6 +61,7 @@
     state: file
 
 - name: Tool Symlink
+  become: true
   file:
     path: "{{ owasp_dependency_check_mirror_dir }}/nist-data-mirror.jar"
     src: "{{ owasp_dependency_check_mirror_dir }}/nist-data-mirror-{{ owasp_dependency_check_mirror_version }}.jar"
@@ -63,6 +71,7 @@
     state: link
 
 - name: Cron Script
+  become: true
   template:
     dest: "/usr/local/bin/owasp_nist_mirror.sh"
     src: "owasp_nist_mirror.sh.j2"
@@ -71,6 +80,7 @@
     mode: "u=rwx,go=rx"
 
 - name: Cron job
+  become: true
   cron:
     name: "OWASP NIST Mirror"
     cron_file: owasp_nist_mirror

@@ -1,0 +1,3 @@
+---
+# Allow in-line update during the run
+owasp_dependency_check_mirror_allow_update: true

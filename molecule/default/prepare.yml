@@ -1,0 +1,12 @@
+---
+- hosts: all
+  roles:
+    - role: geerlingguy.repo-epel
+      when: ansible_os_family | lower == 'redhat'
+    - geerlingguy.java
+    - geerlingguy.nginx
+  tasks:
+    - name: Install cronie
+      package:
+        name: cronie
+      when: ansible_os_family | lower == 'redhat'

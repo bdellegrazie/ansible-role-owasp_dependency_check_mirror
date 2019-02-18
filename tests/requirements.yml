@@ -1,8 +1,0 @@
----
-# From Galaxy
-- src: 'bdellegrazie.ansible-role-serverspec_test_dependencies'
-  version: 'v0.0.7'
-- src: 'geerlingguy.java'
-  version: '1.8.1'
-- src: 'geerlingguy.nginx'
-  version: '2.6.0'

@@ -1,0 +1,12 @@
+---
+file:
+  /var/cache/nist_data_mirror/nvdcve-1.0-2002.json.gz:
+    exists: true
+    filetype: file
+    mode: '0644'
+    owner: owasp
+
+http:
+  http://localhost/nvdcve-1.0-2002.json.gz:
+    status: 200
+    timeout: 30

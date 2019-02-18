@@ -1,4 +1,5 @@
 ---
+# https://github.com/stevespringett/nist-data-mirror/ is the project that provides the JAR
 owasp_dependency_check_mirror_version: "1.2.0"
 owasp_dependency_check_mirror_manage_user: true
 owasp_dependency_check_mirror_group: owasp
@@ -11,3 +12,4 @@ owasp_dependency_check_mirror_cron_template: "cron.conf.j2"
 # Java options:
 owasp_dependency_check_mirror_jvm_options: ~
 # use "-Dhttps.proxyHost=<blah> -Dhttps.proxyPort=<blah>" for a proxy
+owasp_dependency_check_mirror_allow_update: false
