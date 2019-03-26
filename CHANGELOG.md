@@ -11,6 +11,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Minor linting changes
 - Tests now use Goss rather than InSpec
 - Minor repo rename (switch hyphens for underscore) to better align with other roles
+- Ansible updated to 2.7.9
+- Molecule updates (minor)
+- Pre-commit updates (minor)
 ### Deprecated
 ### Removed
 ### Fixed
