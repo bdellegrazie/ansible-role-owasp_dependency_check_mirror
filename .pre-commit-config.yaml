@@ -6,7 +6,6 @@ repos:
       - id: trailing-whitespace
         files: \.(js|json|rb|md|py|sh|txt|yaml|yml)$
       - id: check-yaml
-        exclude: molecule/default/tests/test_ca_certificates.yml
       - id: check-case-conflict
       - id: check-json
       - id: end-of-file-fixer
@@ -14,9 +13,8 @@ repos:
     rev: v1.16.0
     hooks:
       - id: yamllint
-  - repo: https://github.com/willthames/ansible-lint.git
+  - repo: https://github.com/ansible/ansible-lint.git
     rev: v4.1.0
     hooks:
       - id: ansible-lint
         files: \.(yaml|yml)$
-        exclude: molecule/default/tests/test_ca_certificates.yml
