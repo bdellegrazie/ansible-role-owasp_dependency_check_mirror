@@ -1,10 +1,10 @@
 ---
 - git: 'https://github.com/geerlingguy/ansible-role-repo-epel.git'
-  version: '1.2.3'
+  version: '1.2.2'
   dst: $MOLECULE_EPHEMERAL_DIRECTORY/roles/geerlingguy.repo-epel/
 - git: 'https://github.com/geerlingguy/ansible-role-java.git'
   version: '1.9.5'
   dst: $MOLECULE_EPHEMERAL_DIRECTORY/roles/geerlingguy.java/
 - git: 'https://github.com/geerlingguy/ansible-role-nginx.git'
-  version: '2.6.2'
+  version: '2.7.0'
   dst: $MOLECULE_EPHEMERAL_DIRECTORY/roles/geerlingguy.nginx/
