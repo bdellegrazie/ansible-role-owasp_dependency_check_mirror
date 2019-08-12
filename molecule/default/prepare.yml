@@ -1,12 +1,13 @@
 ---
 - hosts: all
   roles:
-    - role: geerlingguy.repo-epel
-      when: ansible_os_family | lower == 'redhat'
     - geerlingguy.java
     - geerlingguy.nginx
-  tasks:
-    - name: Install cronie
+  pre_tasks:
+    # CentOS provides epel-release package, use that
+    - name: Install epel
       package:
-        name: cronie
+        name:
+          - epel-release
+          - cronie
       when: ansible_os_family | lower == 'redhat'

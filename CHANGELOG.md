@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Added
 ### Changed
+- Updated dependency check mirror from 1.2.0 -> 1.3.0
 - Updated Travis build process to use newer molecule
 - Minor linting changes
 - Tests now use Goss rather than InSpec
