@@ -1,6 +1,6 @@
 ---
 - git: 'https://github.com/geerlingguy/ansible-role-java.git'
-  version: '1.9.5'
+  version: '1.9.7'
   dst: $MOLECULE_EPHEMERAL_DIRECTORY/roles/geerlingguy.java/
 - git: 'https://github.com/geerlingguy/ansible-role-nginx.git'
   version: '2.7.0'
