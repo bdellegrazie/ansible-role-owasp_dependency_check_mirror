@@ -1,6 +1,6 @@
 ---
 # https://github.com/stevespringett/nist-data-mirror/ is the project that provides the JAR
-owasp_dependency_check_mirror_version: "1.3.0"
+owasp_dependency_check_mirror_version: "1.4.0"
 owasp_dependency_check_mirror_manage_user: true
 owasp_dependency_check_mirror_group: owasp
 owasp_dependency_check_mirror_user: owasp
